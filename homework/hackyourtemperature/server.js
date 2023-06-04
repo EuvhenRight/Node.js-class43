@@ -13,7 +13,12 @@ app.get('/', (req, res) => {
 app.post('/weather', (req, res) => {
   // Access the cityName from the request body
   const cityName = req.body.cityName;
-
+	
+ // Check if cityName is empty or undefined
+  if (!cityName) {
+    return res.status(400).json({ error: 'City name is required' });
+  }
+	
   // Send the cityName as a response to the client
   res.send(cityName);
 });
